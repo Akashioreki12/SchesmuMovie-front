@@ -1,0 +1,23 @@
+
+<div class="max-w-screen-md mx-auto mt-8 ">
+    <div class="flex items-center justify-between mb-10">
+        <div>
+            <h1 class="text-4xl font-semibold mr-4 text-amber-900">Favorite Movies</h1>
+        </div>
+        <div>
+            <button (click)="returnToHome()" class="bg-amber-900 text-white px-4 py-2 rounded-md">Return</button>
+        </div>
+    </div>
+    <div *ngFor="let movie of favoriteMovies" class="bg-slate-100 p-4 rounded-md mb-4 flex items-center">
+        <div class="flex-shrink-0">
+            <img *ngIf="movie.poster_path" [src]="'https://image.tmdb.org/t/p/w200' + movie.poster_path"
+                alt="{{ movie.title }} Poster" class="w-24 h-30 object-cover rounded-md">
+        </div>
+
+        <div class="ml-4">
+            <h2 class="text-lg font-semibold">{{ movie.title }}</h2>
+            <button (click)="deleteFavorite(movie.id)"
+                class="bg-red-500 text-white px-4 py-2 rounded-md mt-2">Delete</button>
+        </div>
+    </div>
+</div>

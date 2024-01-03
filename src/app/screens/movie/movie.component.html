@@ -1,0 +1,41 @@
+
+<div class="flex flex-row items-center justify-between mx-[20%]">
+    <h1 class="text-center m-5 text-4xl font-bold text-red-950">
+        SchesmuBox
+    </h1>
+    <div class="flex flex-row items-center justify-between gap-4">
+        
+        <button *ngIf="isAuthenticated" (click)="onOpenFavorites()" class="bg-amber-500 hover:bg-amber-900 text-white py-2 px-4 rounded-lg" (click)="navigateToFavorite()">
+            Favorites
+        </button>
+
+    <div *ngIf="isAuthenticated">
+        <a class=" bg-amber-500 hover:bg-amber-900 text-white py-3 px-4 rounded-lg" (click)="onLogout()">Logout</a>
+    </div>
+    <div *ngIf="!isAuthenticated">
+        <a class=" bg-amber-500 hover:bg-amber-900 text-white py-3 px-4 rounded-lg" (click)="onLogin()">Sign In</a>
+    </div>
+
+    
+    </div>
+</div>
+
+
+<div class="m-4 flex justify-center items-center gap-5">
+    <input type="text" placeholder="Search movies by title..." id="search" [(ngModel)]="searchQuery"
+        class="bg-slate-100 px-4 py-2 border stroke-red-950 rounded-md shadow-md w-[75%]">
+    <button class="bg-red-950 text-lg font-medium text-white px-4 py-2 rounded-lg"
+        (click)="searchMovies()">Search</button>
+</div>
+
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 p-4 ">
+    <div class="movie-card bg-white-50 p-4 shadow-md transition-transform transform hover:scale-105"
+        *ngFor="let movie of searchResults">
+        <a [routerLink]="['/movie-details', movie.id]">
+            <img [src]="movie.posterUrl" alt="{{ movie.title }} Poster" class="movie-poster mb-4">
+            <h3 class="text-lg font-semibold">{{ movie.title }}</h3>
+            <p>Date: {{ movie.release_date }}</p>
+            <p>Duration: {{ movie.runtime }} minutes</p>
+        </a>
+    </div>
+</div>

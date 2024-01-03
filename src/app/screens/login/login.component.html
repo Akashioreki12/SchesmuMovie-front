@@ -1,0 +1,45 @@
+<div class="login-container bg-white text-gray-800 min-h-screen flex items-center justify-center">
+  <app-alert [message]="error" *ngIf="error" (close)="onHandleError()" class="absolute top-0 right-0 m-4"></app-alert>
+
+  <div class="login-form max-w-md p-10 bg-gray-100 rounded-md">
+    <h1 class="text-4xl font-bold mb-6">Sign In</h1>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmitLogin()">
+      <div class="mb-6">
+        <label for="email" class="text-lg">Email</label>
+        <input type="email" formControlName="email" placeholder="Enter your email"
+          class="form-input mt-2 px-4 py-2 rounded-md w-full" />
+        <div class="error-message text-red-500"
+          *ngIf="loginForm.get('email').hasError('required') && loginForm.get('email').touched">
+          Email is required.
+        </div>
+        <div class="error-message text-red-500"
+          *ngIf="loginForm.get('email').hasError('email') && loginForm.get('email').touched">
+          Invalid email format.
+        </div>
+      </div>
+
+      <div class="mb-6">
+        <label for="password" class="text-lg">Password</label>
+        <input type="password" formControlName="password" placeholder="Enter your password"
+          class="form-input mt-2 px-4 py-2 rounded-md w-full" />
+        <div class="error-message text-red-500"
+          *ngIf="loginForm.get('password').hasError('required') && loginForm.get('password').touched">
+          Password is required.
+        </div>
+      </div>
+
+      <button type="submit" [disabled]="loginForm.invalid"
+        class="btn bg-amber-900 hover:bg-amber-500 text-white py-2 px-4 rounded-lg">
+        Sign In
+      </button>
+    </form>
+
+    <div class="alert alert-danger mt-6" *ngIf="authFailed">
+      Authentication failed
+    </div>
+
+    <p class="signup-link mt-6 text-lg">
+      New to Netflix? <a [routerLink]="['/signup']" class="text-amber-900">Sign up now</a>
+    </p>
+  </div>
+</div>

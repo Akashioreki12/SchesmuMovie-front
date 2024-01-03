@@ -1,0 +1,24 @@
+<div class="p-8 bg-white rounded-lg shadow-md w-full h-full">
+    <h1 class="text-3xl font-bold mb-4">What do you think?</h1>
+
+    <form [formGroup]="commentForm" (ngSubmit)="onSubmit()">
+        <div class="mb-4 flex flex-row space-x-4">
+            <div class="flex flex-col">
+                <label for="name" class="text-gray-700 text-sm font-medium mb-2">Name</label>
+                <input type="text" id="name" name="name" formControlName="name"
+                    class="px-4 py-2 border rounded-md w-40">
+            </div>
+            <div class="flex flex-col">
+                <label for="email" class="text-gray-700 text-sm font-medium mb-2">Email</label>
+                <input type="email" id="email" name="email" formControlName="email"
+                    class="px-4 py-2 border rounded-md w-40">
+            </div>
+        </div>
+        <div class="mb-4">
+            <label for="comment" class="text-gray-700 text-sm font-medium mb-2">Comment</label>
+            <textarea id="comment" name="comment" formControlName="comment" rows="4"
+                class="px-4 py-2 border rounded-md w-full"></textarea>
+        </div>
+        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md">Submit</button>
+    </form>
+</div>

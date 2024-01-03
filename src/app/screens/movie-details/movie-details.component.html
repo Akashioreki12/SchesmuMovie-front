@@ -1,0 +1,34 @@
+<div *ngIf="movieDetails" class="min-h-screen flex items-center justify-center bg-gray-100  flex-col">
+    <div class="mx-[8%] my-[2%] p-8 bg-white rounded-lg shadow-md flex flex-row">
+        <div class="flex-shrink-0">
+            <img [src]="'https://image.tmdb.org/t/p/w500' + movieDetails.poster_path"
+                alt="{{ movieDetails.title }} Poster" class="w-64 h-96 object-cover rounded-md">
+        </div>
+
+        <div class="ml-8">
+            <h1 class="text-4xl font-bold mb-4">{{ movieDetails.title }}</h1>
+            <div class="m-4">
+                <p class="text-gray-700">{{ movieDetails.overview }}</p>
+                <p class="text-gray-700 mt-5">Popularity: {{ movieDetails.popularity }}</p>
+                <p class="text-gray-700">Release Date: {{ movieDetails.release_date }}</p>
+                <p class="text-gray-700">Vote: {{ movieDetails.vote_average }}</p>
+
+                <button (click)="toggleFavorite()" *ngIf="isAuthenticated" [ngClass]="{ 'bg-red-500': isFavorite, 'bg-red-300': !isFavorite }"
+                    class="text-white p-2 rounded-md cursor-pointer transition-all mr-6 mt-4">
+                    {{ isFavorite ? 'Added! ❤️' : 'Add to Favorites ❤️' }}
+                </button>
+
+                 <button  
+                    class="text-white p-2 rounded-md cursor-pointer transition-all mr-6 mt-4 bg-yellow-400" (click)="navigateToFavorite()">
+                    See all Favorites 🎇
+                </button> 
+
+                                
+            </div>
+        </div>
+    </div>
+
+    <app-movie-comments class="w-[84%] " [movieId]="movieDetails.id"></app-movie-comments>
+
+    <app-comments-section class="w-[84%] my-[2%] " [movieDetails]="movieDetails"></app-comments-section>
+</div>

@@ -1,0 +1,45 @@
+<div class="signup-container bg-white text-gray-800 min-h-screen flex items-center justify-center">
+  <app-alert [message]="error" *ngIf="error" (close)="onHandleError()" class="absolute top-0 right-0 m-4"></app-alert>
+
+  <div class="signup-form max-w-md p-10 bg-gray-100 rounded-md">
+    <h1 class="text-4xl font-bold mb-6">Sign Up</h1>
+    <form [formGroup]="signUpForm" (ngSubmit)="onSubmitSignUp()">
+      <div class="mb-6">
+        <label for="email" class="text-lg">Email</label>
+        <input type="email" formControlName="email" placeholder="Enter your email"
+          class="form-input mt-2 px-4 py-2 rounded-md w-full" />
+        <div class="error-message text-red-500"
+          *ngIf="signUpForm.get('email').hasError('required') && signUpForm.get('email').touched">
+          Email is required.
+        </div>
+        <div class="error-message text-red-500"
+          *ngIf="signUpForm.get('email').hasError('email') && signUpForm.get('email').touched">
+          Invalid email format.
+        </div>
+      </div>
+
+      <div class="mb-6">
+        <label for="password" class="text-lg">Password</label>
+        <input type="password" formControlName="password" placeholder="Enter your password"
+          class="form-input mt-2 px-4 py-2 rounded-md w-full" />
+        <div class="error-message text-red-500"
+          *ngIf="signUpForm.get('password').hasError('required') && signUpForm.get('password').touched">
+          Password is required.
+        </div>
+        <div class="error-message text-red-500"
+          *ngIf="signUpForm.get('password').hasError('minlength') && signUpForm.get('password').touched">
+          Password must be at least 6 characters long.
+        </div>
+      </div>
+
+      <button class="btn bg-amber-900 hover:bg-amber-500 text-white py-2 px-4 rounded-lg mt-6" type="submit"
+        [disabled]="signUpForm.invalid">
+        Sign up
+      </button>
+    </form>
+
+    <p class="login-link mt-6 text-lg">
+      Already a member? <a routerLink="/login" class="text-amber-900">Sign in now</a>
+    </p>
+  </div>
+</div>

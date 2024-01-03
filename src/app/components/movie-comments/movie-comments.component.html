@@ -1,0 +1,13 @@
+<div *ngIf="comments.length > 0" class="my-4 bg-white p-4 rounded-lg shadow-md">
+    <h2 class="text-3xl font-bold mb-4 text-amber-900">Comments</h2>
+    <ul>
+        <li *ngFor="let comment of comments" class="mb-4">
+            <div class="flex flex-row items-center mb-2">
+                <div class="font-bold mr-2">{{ comment.name }}</div>
+                <div class="text-gray-600">{{ comment.email }}</div>
+            </div>
+            <div>{{ comment.comment }}</div>
+        </li>
+    </ul>
+</div>
+<div *ngIf="comments.length === 0" class="text-gray-600">No comments available for this movie.</div>
