@@ -20,7 +20,7 @@ export class MovieComponent implements OnInit {
   userSub: Subscription;
   dialog: MatDialog;
 
-  private apiKey = 'b6bf5b3fbe3c1498610aea6654fd8c73';
+  private apiKey = '';
   private apiUrlLatest = 'https://api.themoviedb.org/3/discover/movie'; // Latest movies endpoint
   private apiUrlSearch = 'https://api.themoviedb.org/3/search/movie'; // Search movies endpoint
   private currentPage = 1;
